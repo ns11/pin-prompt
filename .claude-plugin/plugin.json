@@ -15,8 +15,5 @@
     "fullscreen",
     "chat",
     "prompt"
-  ],
-  "network": {
-    "hosts": []
-  }
+  ]
 }
