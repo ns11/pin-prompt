@@ -246,7 +246,8 @@ export const register: Register = on => {
     const pause = async (ms: number) => {
       try {
         // Written out in full, so the commands the mod runs read plainly here.
-        await $.process.run(ms === FOLLOW_MS ? ['sleep', '0.05'] : ['sleep', '0.25'], { timeoutMs: ms + 5000 })
+        if (ms === FOLLOW_MS) await $.process.run(['sleep', '0.05'], { timeoutMs: 5050 })
+        else await $.process.run(['sleep', '0.25'], { timeoutMs: 5250 })
         return true
       } catch (err) {
         note($, `stopped: could not wait (${String(err)})`)

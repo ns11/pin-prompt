@@ -1,8 +1,22 @@
 {
   "name": "pin-prompt",
-  "version": "0.1.0",
-  "description": "On send, scroll your prompt to the top of the screen so the reply fills the screen below it (terminal, fullscreen renderer).",
+  "version": "0.2.0",
+  "description": "When you send a prompt, the view follows the reply up the screen and stops once your prompt is at the top, like a chat app (terminal, fullscreen renderer).",
   "author": {
     "name": "ns11"
+  },
+  "homepage": "https://github.com/ns11/pin-prompt",
+  "repository": "https://github.com/ns11/pin-prompt",
+  "license": "MIT",
+  "keywords": [
+    "terminal",
+    "scroll",
+    "auto-scroll",
+    "fullscreen",
+    "chat",
+    "prompt"
+  ],
+  "network": {
+    "hosts": []
   }
 }

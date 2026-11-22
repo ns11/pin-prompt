@@ -13,7 +13,7 @@ const TRIED = 'stopped following: the view could not be moved'
 const VIEW = { columns: 120, rows: 40, isFullscreen: true }
 
 type World = {
-  /** When true, a sent prompt's row is not drawn as it enters (a queued prompt): the test draws it. */
+  /** When true, a sent prompt's row is not drawn as it enters: the test draws it with `drawRow`. */
   drawLater?: boolean
   /** What the model streams on the next `turn.step`. */
   chunks: Chunk<'turn.step'>[]
@@ -25,7 +25,7 @@ const tries = (world: World) => world.notes.filter(n => n.startsWith(TRIED)).len
 /**
  * Plays the engine beneath the mod: a clock the test moves, a prompt that
  * draws its row as it enters, a model that streams what the test gives it, and
- * a transcript that records the scrolls asked of it.
+ * the mod's notes collected for the tests to read.
  */
 function engine($: Engine, on: On, start: { isFullscreen?: boolean; shownText?: string } = {}) {
   const world: World = { chunks: [], notes: [] }
@@ -88,7 +88,7 @@ function engine($: Engine, on: On, start: { isFullscreen?: boolean; shownText?: 
   return { world, clock: { advance, settle: () => mockClock.settle() } }
 }
 
-/** Draws a prompt row, as the engine does once the session takes a queued prompt. */
+/** Draws a prompt row, as the engine does when it draws one in the transcript. */
 const drawRow = ($: Engine, requestId: string, text: string) =>
   $.ui.render({
     surface: 'terminal',

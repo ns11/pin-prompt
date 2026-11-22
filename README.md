@@ -7,6 +7,11 @@ your prompt, and the view stays put while the rest of it arrives.
 
 It adds no blank rows above or below the conversation.
 
+| Auto-scroll on | Auto-scroll off | pin-prompt |
+| :---: | :---: | :---: |
+| ![Auto-scroll on: the view followed the reply to the bottom, and the prompt scrolled off the top](docs/auto-on.png) | ![Auto-scroll off: the view stayed put, so the prompt sits low and the reply streams in out of sight below](docs/auto-off.png) | ![pin-prompt: the prompt is at the top, and the reply fills the screen below it](docs/pin-prompt.png) |
+| Your prompt scrolls away. | The reply streams in out of sight. | Your prompt stays at the top. |
+
 ## Install
 
 At the prompt of a Claude Code terminal session:
@@ -25,10 +30,19 @@ claude plugin install pin-prompt --marketplace ns11/pin-prompt
 
 ## Requirements
 
-- **Fullscreen renderer:** set `"tui": "fullscreen"` in `~/.claude/settings.json`.
-  In the classic renderer the terminal owns scrolling, so the mod does nothing there.
-- **Auto-scroll off:** set `"autoScrollEnabled": false`. Auto-scroll follows the
-  reply to the bottom, and it can't be stopped once a reply is streaming.
+Add these two lines to `~/.claude/settings.json`:
+
+```json
+{
+  "tui": "fullscreen",
+  "autoScrollEnabled": false
+}
+```
+
+- **`tui: fullscreen`:** in the classic renderer the terminal owns scrolling,
+  so the mod does nothing there.
+- **`autoScrollEnabled: false`:** Auto-scroll follows the reply to the bottom,
+  and it can't be stopped once a reply is streaming.
 - **Terminal only.** The desktop app isn't supported yet.
 
 ## How it works

@@ -1,5 +1,13 @@
 {
   "name": "pin-prompt",
-  "owner": { "name": "ns11" },
-  "plugins": [{ "name": "pin-prompt", "source": "./" }]
+  "description": "pin-prompt: keep your prompt at the top of the Claude Code terminal while the reply fills the screen.",
+  "owner": {
+    "name": "ns11"
+  },
+  "plugins": [
+    {
+      "name": "pin-prompt",
+      "source": "./"
+    }
+  ]
 }
