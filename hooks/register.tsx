@@ -33,9 +33,9 @@ const WAIT_MS = 3000
 const POLL_MS = 50
 /** Once the prompt has entered, how much longer to look for its row. */
 const GRACE_MS = 1500
-/** How often to bring the view along while new output arrives. */
+/** How often to bring the view along while new output arrives (`sleep 0.05` below). */
 const FOLLOW_MS = 50
-/** How often to look for new output while none arrives. */
+/** How often to look for new output while none arrives (`sleep 0.25` below). */
 const IDLE_MS = 250
 /** How long to keep scrolling after the last new output, while the terminal draws it. */
 const TAIL_MS = 400
@@ -245,7 +245,8 @@ export const register: Register = on => {
     /** Waits on a `sleep` process (see the top of the file); false when it can't. */
     const pause = async (ms: number) => {
       try {
-        await $.process.run(['sleep', String(ms / 1000)], { timeoutMs: ms + 5000 })
+        // Written out in full, so the commands the mod runs read plainly here.
+        await $.process.run(ms === FOLLOW_MS ? ['sleep', '0.05'] : ['sleep', '0.25'], { timeoutMs: ms + 5000 })
         return true
       } catch (err) {
         note($, `stopped: could not wait (${String(err)})`)

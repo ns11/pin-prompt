@@ -43,11 +43,28 @@ Claude Code lets a mod move the transcript only while the mod is answering your
 own input. So the mod keeps its `prompt.submit` hook running until your prompt
 is in place or the turn ends.
 
+**What each hook does:**
+
+- `prompt.submit`: lets your prompt through unchanged, finds its row, and
+  follows it as described above until it is in place or the turn ends. A
+  prompt sent while Claude is working, a slash command, or one from another
+  device is passed straight through.
+- `turn.step`: counts the rows the reply takes as it streams, to know when new
+  output arrives and when the prompt is in place. Every chunk passes through
+  unchanged.
+- `turn.complete`: notes that the main turn ended, so following stops.
+- `ui.render` on `UserMessage`: records which prompt rows are drawn, with their
+  text. It draws nothing: each row is passed through as it is.
+
+**What it sends, and where:** nothing. The mod makes no network calls, reads
+and writes no files, and stores nothing between sessions. Its notes go to the
+debug log only.
+
 **It runs `sleep` processes.** A hook gets 10 seconds of its own time, and
 timer waits count toward that, but a reply can take minutes to start. So the
-mod waits between scrolls on `sleep 0.05` / `sleep 0.25` processes, which the
-budget doesn't count. While a reply streams, that's up to about 20 short
-processes a second. Because of this, the plugin report lists the mod as able
+mod waits between scrolls on `sleep 0.05` (while output arrives) and
+`sleep 0.25` (while none does) processes, which the budget doesn't count.
+While a reply streams, that's up to about 20 short processes a second. Because of this, the plugin report lists the mod as able
 to start programs. It starts nothing else.
 
 ## Limits
