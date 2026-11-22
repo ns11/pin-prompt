@@ -1,0 +1,5 @@
+{
+  "name": "pin-prompt",
+  "owner": { "name": "ns11" },
+  "plugins": [{ "name": "pin-prompt", "source": "./" }]
+}

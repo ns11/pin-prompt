@@ -1,0 +1,5 @@
+{
+  "name": "pin-prompt",
+  "version": "0.1.0",
+  "description": "On send, scroll your prompt to the top of the screen so the reply fills the screen below it (terminal, fullscreen renderer)."
+}
