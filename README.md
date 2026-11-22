@@ -1,3 +1,5 @@
+<img src=".claude-plugin/icon.png" alt="pin-prompt icon" width="112" align="right">
+
 # pin-prompt
 
 A Claude Code mod that makes the terminal behave like a chat app. When you
